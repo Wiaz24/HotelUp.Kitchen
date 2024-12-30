@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hotelup-kitchen
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelup-kitchen-deployment
+  labels:
+    app: hotelup-kitchen
+  namespace: hotelup-kitchen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotelup-kitchen
+  template:
+    metadata:
+      name: hotelup-kitchen
+      labels:
+        app: hotelup-kitchen
+    spec:
+      containers:
+        - name: hotelup-kitchen
+          image: wiaz/hotelup.kitchen:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5006
+              protocol: TCP
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotelup-kitchen-service
+  labels:
+    app: hotelup-kitchen
+  namespace: hotelup-kitchen
+spec:
+    selector:
+        app: hotelup-kitchen
+    ports:
+        - protocol: TCP
+          port: 5006
+          targetPort: 5006
+    type: LoadBalancer
+      
