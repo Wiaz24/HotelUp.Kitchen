@@ -16,9 +16,6 @@ internal sealed class DbContextConfiguration
 
         builder.HasMany(x => x.FoodTasks)
             .WithOne();
-        
-        builder.HasMany(x => x.Menus)
-            .WithOne();
     }
 
     public void Configure(EntityTypeBuilder<Dish> builder)
@@ -81,6 +78,9 @@ internal sealed class DbContextConfiguration
         builder.Property(x => x.Published);
 
         builder.HasMany(x => x.Dishes)
+            .WithMany();
+        
+        builder.HasOne(x => x.Cook)
             .WithMany();
     }
 }

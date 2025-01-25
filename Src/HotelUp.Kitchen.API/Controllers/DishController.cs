@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using HotelUp.Kitchen.API.DTOs;
+using HotelUp.Kitchen.Persistence.DTOs;
 using HotelUp.Kitchen.Persistence.Entities;
 using HotelUp.Kitchen.Services.Services;
 using HotelUp.Kitchen.Shared.Auth;

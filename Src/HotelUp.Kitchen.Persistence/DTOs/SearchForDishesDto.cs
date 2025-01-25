@@ -1,4 +1,4 @@
-﻿namespace HotelUp.Kitchen.API.DTOs;
+﻿namespace HotelUp.Kitchen.Persistence.DTOs;
 
 public record SearchForDishesDto
 {
