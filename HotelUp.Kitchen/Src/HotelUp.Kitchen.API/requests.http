@@ -1,0 +1,6 @@
+﻿@url = http://localhost:5006/api/kitchen
+### GET request to example server
+
+GET {{url}}/_health
+
+###
