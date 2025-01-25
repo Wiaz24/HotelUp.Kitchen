@@ -6,8 +6,9 @@ public static class Extensions
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddMemoryCache();
-        // Add repositories here
+        services.AddScoped<ICookRepository, CookRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
+        services.AddScoped<IDishRepository, DishRepository>();
         return services;
     }
 }
