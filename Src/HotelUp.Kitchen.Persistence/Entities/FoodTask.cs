@@ -10,4 +10,5 @@ public class FoodTask
     public required TaskStatus Status { get; set; } = TaskStatus.Pending;
     public required DateTime CreatedAt { get; set; }
     public required int RoomNumber { get; set; }
+    public required List<Dish> Dishes { get; set; }
 }
