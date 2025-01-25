@@ -40,6 +40,8 @@ internal static class Extensions
         {
             options.AddPolicy(PoliciesNames.IsAdmin, policy =>
                 policy.RequireRole("Admins"));
+            options.AddPolicy(PoliciesNames.CanManageDishes, policy =>
+                policy.RequireRole("Admins", "Cooks"));
         });
         return services;
     }

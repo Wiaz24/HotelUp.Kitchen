@@ -9,6 +9,7 @@ public static class Extensions
         services.AddScoped<ICookRepository, CookRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
         services.AddScoped<IDishRepository, DishRepository>();
+        services.AddScoped<IDishImageRepository, S3DishImageRepository>();
         return services;
     }
 }

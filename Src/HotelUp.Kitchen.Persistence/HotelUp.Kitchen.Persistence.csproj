@@ -15,11 +15,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Exceptions\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AWSSDK.S3" Version="3.7.412.4" />
       <PackageReference Include="FluentValidation" Version="11.11.0" />
     </ItemGroup>
 
