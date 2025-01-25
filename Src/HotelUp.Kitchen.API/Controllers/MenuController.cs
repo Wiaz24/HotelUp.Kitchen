@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel;
+using System.Security.Claims;
 using HotelUp.Kitchen.Persistence.DTOs;
 using HotelUp.Kitchen.Services.Services;
 using HotelUp.Kitchen.Shared.Auth;
@@ -66,5 +67,18 @@ public class MenuController : ControllerBase
     {
         await _menuService.CreateAsync(LoggedInUserId, dto);
         return CreatedAtAction(nameof(GetMenu), new {servingDate = dto.ServingDate}, null);
+    }
+    
+    [HttpPut("publish")]
+    [Authorize(Policy = PoliciesNames.CanManageDishes)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [SwaggerOperation("Publish menu for provided date. Requires to be menu owner.")]
+    public async Task<IActionResult> PublishMenu([FromQuery] PublishMenuDto dto)
+    {
+        await _menuService.PublishAsync(LoggedInUserId, dto.ServingDate);
+        return Ok();
     }
 }
