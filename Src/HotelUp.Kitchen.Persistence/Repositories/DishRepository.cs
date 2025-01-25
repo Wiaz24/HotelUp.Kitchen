@@ -19,6 +19,13 @@ public class DishRepository : IDishRepository
             .FirstOrDefaultAsync(x => x.Name == name);
     }
 
+    public async Task<IEnumerable<Dish>> SearchByNameAsync(string searchString)
+    {
+        return await _dbContext.Dishes
+            .Where(x => EF.Functions.ILike(x.Name, $"%{searchString}%"))
+            .ToListAsync();
+    }
+
     public async Task AddAsync(Dish dish)
     {
         await _dbContext.Dishes.AddAsync(dish);

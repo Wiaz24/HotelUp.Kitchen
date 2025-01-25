@@ -17,6 +17,7 @@ internal static class Extensions
         {
             options.EnableAnnotations();
             options.UseInlineDefinitionsForEnums();
+            options.MapType<decimal>(() => new OpenApiSchema { Type = "number", Format = "decimal" });
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelUp.Kitchen", Version = "v1" });
             options.AddSecurityDefinition("oidc", new OpenApiSecurityScheme
             {
