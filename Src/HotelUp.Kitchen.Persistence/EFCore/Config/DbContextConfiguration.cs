@@ -27,7 +27,7 @@ internal sealed class DbContextConfiguration
 
         builder.ComplexProperty(x => x.Price);
 
-        builder.Property(x => x.ImageUrl);
+        builder.ComplexProperty(x => x.ImageUrl);
     }
 
     public void Configure(EntityTypeBuilder<FoodTask> builder)
@@ -49,8 +49,7 @@ internal sealed class DbContextConfiguration
         
         builder.OwnsOne(x => x.Reservation, b =>
         {
-            b.WithOwner()
-                .HasPrincipalKey(x => x.ReservationId);
+            b.WithOwner();
             
             b.Property(x => x.ReservationId);
             b.HasIndex(x => x.ReservationId);
