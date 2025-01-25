@@ -1,4 +1,4 @@
-namespace HotelUp.Kitchen.Persistence.EF.Config;
+namespace HotelUp.Kitchen.Persistence.EFCore.Config;
 
 internal sealed class DbContextConfiguration
     // : IEntityTypeConfiguration<Entity>

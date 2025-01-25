@@ -1,9 +1,9 @@
-using HotelUp.Kitchen.Persistence.EF.Config;
-using HotelUp.Kitchen.Persistence.EF.Postgres;
+using HotelUp.Kitchen.Persistence.EFCore.Config;
+using HotelUp.Kitchen.Persistence.EFCore.Postgres;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace HotelUp.Kitchen.Persistence.EF;
+namespace HotelUp.Kitchen.Persistence.EFCore;
 
 public class AppDbContext : DbContext
 {

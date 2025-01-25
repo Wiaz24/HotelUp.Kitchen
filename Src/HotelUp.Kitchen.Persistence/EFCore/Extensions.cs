@@ -1,9 +1,8 @@
-using HotelUp.Kitchen.Persistence.EF.Health;
-using HotelUp.Kitchen.Persistence.EF.Postgres;
-using Microsoft.Extensions.Configuration;
+using HotelUp.Kitchen.Persistence.EFCore.Health;
+using HotelUp.Kitchen.Persistence.EFCore.Postgres;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HotelUp.Kitchen.Persistence.EF;
+namespace HotelUp.Kitchen.Persistence.EFCore;
 
 internal static class Extensions
 {

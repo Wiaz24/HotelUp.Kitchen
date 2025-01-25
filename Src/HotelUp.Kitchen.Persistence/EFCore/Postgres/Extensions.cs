@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Npgsql;
 
-namespace HotelUp.Kitchen.Persistence.EF.Postgres;
+namespace HotelUp.Kitchen.Persistence.EFCore.Postgres;
 
 public static class Extensions
 {

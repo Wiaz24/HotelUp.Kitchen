@@ -1,4 +1,4 @@
-﻿using HotelUp.Kitchen.Persistence.EF;
+﻿using HotelUp.Kitchen.Persistence.EFCore;
 using HotelUp.Kitchen.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

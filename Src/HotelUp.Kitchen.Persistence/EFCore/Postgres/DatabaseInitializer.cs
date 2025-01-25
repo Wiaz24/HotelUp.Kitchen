@@ -1,11 +1,10 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HotelUp.Kitchen.Persistence.EF.Postgres;
+namespace HotelUp.Kitchen.Persistence.EFCore.Postgres;
 
 public class DatabaseInitializer : IHostedService
 {
