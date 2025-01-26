@@ -1,5 +1,7 @@
 # HotelUp - Kitchen service
-![dockerhub_badge](https://github.com/Wiaz24/HotelUp.Kitchen/actions/workflows/dockerhub.yml/badge.svg)
+![Application tests](https://github.com/Wiaz24/HotelUp.Kitchen/actions/workflows/tests.yml/badge.svg)
+![Github issues](https://img.shields.io/github/issues/Wiaz24/HotelUp.Kitchen)
+[![Docker Image Size](https://badgen.net/docker/size/wiaz/hotelup.kitchen?icon=docker&label=image%20size)](https://hub.docker.com/r/wiaz/hotelup.kitchen/)
 
 This service should expose endpoints on port `5006` starting with:
 ```http
