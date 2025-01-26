@@ -13,10 +13,18 @@ public class CookService : ICookService
         _cookRepository = cookRepository;
     }
 
+    public Task<Cook?> GetAsync(Guid id)
+    {
+        return _cookRepository.GetByIdAsync(id);
+    }
+
     public async Task CreateAsync(Guid id)
     {
         var existingCook = await _cookRepository.GetByIdAsync(id);
-        if (existingCook is not null) throw new CookAlreadyExistsException(id);
+        if (existingCook is not null)
+        {
+            throw new CookAlreadyExistsException(id);
+        }
         var cook = new Cook
         {
             Id = id,

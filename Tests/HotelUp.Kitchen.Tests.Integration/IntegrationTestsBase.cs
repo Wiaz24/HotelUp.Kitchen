@@ -1,6 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Security.Claims;
 using HotelUp.Kitchen.Tests.Integration.Utils;
+using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit.Abstractions;
 
 namespace HotelUp.Kitchen.Tests.Integration;
