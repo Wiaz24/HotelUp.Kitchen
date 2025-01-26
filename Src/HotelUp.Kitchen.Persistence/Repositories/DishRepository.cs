@@ -26,6 +26,13 @@ public class DishRepository : IDishRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Dish>> GetByNameListAsync(IEnumerable<string> names)
+    {
+        return await _dbContext.Dishes
+            .Where(x => names.Contains(x.Name))
+            .ToListAsync();
+    }
+
     public async Task AddAsync(Dish dish)
     {
         await _dbContext.Dishes.AddAsync(dish);

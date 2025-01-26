@@ -7,7 +7,7 @@ internal static class TestDatabaseFactory
 {
     private const int DefaultPort = 5432;
 
-    private static int _numInstances = 0;
+    private static int _numInstances;
 
     // Container port starts from 5433 to avoid conflicts with local Postgres
     private static int GetPort => DefaultPort + Interlocked.Increment(ref _numInstances);

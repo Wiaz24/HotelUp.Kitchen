@@ -10,11 +10,7 @@ namespace HotelUp.Kitchen.Tests.Integration.Utils;
 
 public static class MockJwtTokens
 {
-    public static string Issuer { get; } = Guid.NewGuid().ToString();
-    public static SecurityKey SecurityKey { get; }
-    public static SigningCredentials SigningCredentials { get; }
-
-    private static readonly JwtSecurityTokenHandler SecTokenHandler = new JwtSecurityTokenHandler();
+    private static readonly JwtSecurityTokenHandler SecTokenHandler = new();
     private static readonly RandomNumberGenerator SecRng = RandomNumberGenerator.Create();
     private static readonly byte[] SecKey = new byte[32];
 
@@ -24,6 +20,10 @@ public static class MockJwtTokens
         SecurityKey = new SymmetricSecurityKey(SecKey) { KeyId = Guid.NewGuid().ToString() };
         SigningCredentials = new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256);
     }
+
+    public static string Issuer { get; } = Guid.NewGuid().ToString();
+    public static SecurityKey SecurityKey { get; }
+    public static SigningCredentials SigningCredentials { get; }
 
     public static string GenerateJwtToken(IEnumerable<Claim> claims)
     {
@@ -49,7 +49,7 @@ public static class MockJwtTokens
                 };
                 options.Configuration = new OpenIdConnectConfiguration
                 {
-                    Issuer = Issuer,
+                    Issuer = Issuer
                 };
             }
         );

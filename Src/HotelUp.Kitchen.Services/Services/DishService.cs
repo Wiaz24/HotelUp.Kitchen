@@ -7,8 +7,8 @@ namespace HotelUp.Kitchen.Services.Services;
 
 public class DishService : IDishService
 {
-    private readonly IDishRepository _dishRepository;
     private readonly IDishImageRepository _dishImageRepository;
+    private readonly IDishRepository _dishRepository;
 
     public DishService(IDishRepository dishRepository, IDishImageRepository dishImageRepository)
     {
@@ -24,10 +24,7 @@ public class DishService : IDishService
     public async Task CreateDishAsync(string name, decimal price, IFormFile image)
     {
         var existingDish = await _dishRepository.GetByNameAsync(name);
-        if (existingDish != null)
-        {
-            throw new DishAlreadyExistsException(name);
-        }
+        if (existingDish != null) throw new DishAlreadyExistsException(name);
         var url = await _dishImageRepository.UploadImageAsync(image);
         var dish = new Dish
         {

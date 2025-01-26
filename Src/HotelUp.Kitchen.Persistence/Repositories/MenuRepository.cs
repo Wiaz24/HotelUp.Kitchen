@@ -13,11 +13,30 @@ public class MenuRepository : IMenuRepository
         _dbContext = dbContext;
     }
 
-    public Task<Menu?> GetByServingDateAsync(DateOnly publishDate)
+    public Task<Menu?> GetPublishedMenuByServingDateAsync(DateOnly publishDate)
     {
         return _dbContext.Menus
+            .AsNoTracking()
             .Include(x => x.Dishes)
+            .Where(x => x.Published == true)
             .FirstOrDefaultAsync(x => x.ServingDate == publishDate);
+    }
+
+    public Task<Menu?> GetByDateAsync(DateOnly servingDate)
+    {
+        return _dbContext.Menus
+            .Include(x => x.Cook)
+            .Include(x => x.Dishes)
+            .FirstOrDefaultAsync(x => x.ServingDate == servingDate);
+    }
+
+    public async Task<IEnumerable<Menu>> GetByCookIdAsync(Guid cookId)
+    {
+        return await _dbContext.Menus
+            .Include(x => x.Cook)
+            .Include(x => x.Dishes)
+            .Where(x => x.Cook.Id == cookId)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Menu menu)

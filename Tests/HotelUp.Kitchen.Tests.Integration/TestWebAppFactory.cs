@@ -29,6 +29,20 @@ public class TestWebAppFactory : WebApplicationFactory<IApiMarker>, IAsyncLifeti
         _containers.Add(_rabbitMqContainer);
     }
 
+    public async Task InitializeAsync()
+    {
+        var tasks = _containers
+            .Select(c => c.StartAsync());
+        await Task.WhenAll(tasks);
+    }
+
+    public new Task DisposeAsync()
+    {
+        var tasks = _containers
+            .Select(c => c.StopAsync());
+        return Task.WhenAll(tasks);
+    }
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseSetting("Postgres:ConnectionString", _dbContainer.GetConnectionString());
@@ -44,19 +58,5 @@ public class TestWebAppFactory : WebApplicationFactory<IApiMarker>, IAsyncLifeti
             services.AddSingleton<TimeProvider>(TimeProvider);
         });
         base.ConfigureWebHost(builder);
-    }
-
-    public async Task InitializeAsync()
-    {
-        var tasks = _containers
-            .Select(c => c.StartAsync());
-        await Task.WhenAll(tasks);
-    }
-
-    public new Task DisposeAsync()
-    {
-        var tasks = _containers
-            .Select(c => c.StopAsync());
-        return Task.WhenAll(tasks);
     }
 }
