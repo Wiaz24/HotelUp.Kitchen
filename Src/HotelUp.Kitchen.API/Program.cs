@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using HotelUp.Kitchen.API.Cors;
 using HotelUp.Kitchen.API.Swagger;
@@ -10,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddShared();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddCustomSwagger(builder.Configuration);
 builder.Services.AddCorsForFrontend(builder.Configuration);
 builder.Services.AddServiceLayer();
@@ -26,7 +30,6 @@ app.MapGet("/", () => Results.Redirect("/api/kitchen/swagger/index.html"))
     .Produces(200)
     .ExcludeFromDescription();
 app.Run();
-
 public interface IApiMarker
 {
 }

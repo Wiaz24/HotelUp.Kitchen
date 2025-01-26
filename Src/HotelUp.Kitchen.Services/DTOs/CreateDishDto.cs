@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Microsoft.AspNetCore.Http;
 
-namespace HotelUp.Kitchen.Persistence.DTOs;
+namespace HotelUp.Kitchen.Services.DTOs;
 
 public record CreateDishDto
 {

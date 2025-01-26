@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Security.Claims;
-using HotelUp.Kitchen.Persistence.DTOs;
+using HotelUp.Kitchen.Services.DTOs;
 using HotelUp.Kitchen.Services.Services;
 using HotelUp.Kitchen.Shared.Auth;
 using HotelUp.Kitchen.Shared.Exceptions;

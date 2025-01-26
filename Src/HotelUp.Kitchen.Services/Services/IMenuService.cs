@@ -1,5 +1,5 @@
-﻿using HotelUp.Kitchen.Persistence.DTOs;
-using HotelUp.Kitchen.Persistence.Entities;
+﻿using HotelUp.Kitchen.Persistence.Entities;
+using HotelUp.Kitchen.Services.DTOs;
 
 namespace HotelUp.Kitchen.Services.Services;
 

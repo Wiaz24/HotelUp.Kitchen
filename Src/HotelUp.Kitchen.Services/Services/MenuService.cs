@@ -1,6 +1,6 @@
-using HotelUp.Kitchen.Persistence.DTOs;
 using HotelUp.Kitchen.Persistence.Entities;
 using HotelUp.Kitchen.Persistence.Repositories;
+using HotelUp.Kitchen.Services.DTOs;
 using HotelUp.Kitchen.Services.Events;
 using HotelUp.Kitchen.Services.Events.DTOs;
 using HotelUp.Kitchen.Services.Services.Exceptions;
@@ -133,6 +133,9 @@ public class MenuService : IMenuService
             throw new CookNotFoundException(cookId);
         }
 
-        if (menu.Cook.Id != cookId) throw new MenuCookMismatchException(cookId, menu.Cook.Id);
+        if (menu.Cook.Id != cookId)
+        {
+            throw new MenuCookMismatchException(cookId, menu.Cook.Id);
+        }
     }
 }

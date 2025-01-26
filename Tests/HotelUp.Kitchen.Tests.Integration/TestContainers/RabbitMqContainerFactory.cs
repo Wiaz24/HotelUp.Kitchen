@@ -7,7 +7,7 @@ namespace HotelUp.Kitchen.Tests.Integration.TestContainers;
 internal static class RabbitMqContainerFactory
 {
     private const int DefaultAmqpPort = 5672;
-    private static int _numInstances = 0;
+    private static int _numInstances;
     private static int GetContainerInstance => Interlocked.Increment(ref _numInstances) - 1;
 
     internal static RabbitMqContainer Create()
