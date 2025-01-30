@@ -1,48 +1,52 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: hotelup-kitchen
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hotelup-kitchen-deployment
-  labels:
-    app: hotelup-kitchen
-  namespace: hotelup-kitchen
+    name: kitchen-deployment
+    labels:
+        app: hotelup
+    namespace: hotelup
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: hotelup-kitchen
-  template:
-    metadata:
-      name: hotelup-kitchen
-      labels:
-        app: hotelup-kitchen
-    spec:
-      containers:
-        - name: hotelup-kitchen
-          image: wiaz/hotelup.kitchen:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5006
-              protocol: TCP
-      restartPolicy: Always
+    replicas: 1
+    selector:
+        matchLabels:
+            app: kitchen
+    template:
+        metadata:
+            name: kitchen
+            labels:
+                app: kitchen
+        spec:
+            containers:
+                - name: kitchen
+                  image: wiaz/hotelup.kitchen:latest
+                  imagePullPolicy: Always
+                  env:
+                      - name: ASPNETCORE_ENVIRONMENT
+                        value: Production
+                  ports:
+                      - containerPort: 8080
+                        protocol: TCP
+                  volumeMounts:
+                      - name: aws-credentials
+                        mountPath: /home/app/.aws
+            restartPolicy: Always
+            volumes:
+                - name: aws-credentials
+                  secret:
+                      secretName: aws-credentials
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hotelup-kitchen-service
-  labels:
-    app: hotelup-kitchen
-  namespace: hotelup-kitchen
+    name: kitchen-service
+    labels:
+        app: kitchen
+    namespace: hotelup
 spec:
     selector:
-        app: hotelup-kitchen
+        app: kitchen
     ports:
         - protocol: TCP
           port: 5006
-          targetPort: 5006
-    type: LoadBalancer
-      
+          targetPort: 8080
+    type: ClusterIP
