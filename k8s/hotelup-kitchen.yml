@@ -17,23 +17,16 @@ spec:
                 app: kitchen
         spec:
             containers:
-                - name: kitchen
-                  image: wiaz/hotelup.kitchen:latest
-                  imagePullPolicy: Always
-                  env:
-                      - name: ASPNETCORE_ENVIRONMENT
-                        value: Production
-                  ports:
-                      - containerPort: 8080
-                        protocol: TCP
-                  volumeMounts:
-                      - name: aws-credentials
-                        mountPath: /home/app/.aws
+              - name: kitchen
+                image: wiaz/hotelup.kitchen:latest
+                imagePullPolicy: Always
+                env:
+                  - name: ASPNETCORE_ENVIRONMENT
+                    value: Production
+                ports:
+                  - containerPort: 8080
+                    protocol: TCP
             restartPolicy: Always
-            volumes:
-                - name: aws-credentials
-                  secret:
-                      secretName: aws-credentials
 ---
 apiVersion: v1
 kind: Service
@@ -46,7 +39,7 @@ spec:
     selector:
         app: kitchen
     ports:
-        - protocol: TCP
-          port: 5006
-          targetPort: 8080
+      - protocol: TCP
+        port: 5006
+        targetPort: 8080
     type: ClusterIP
